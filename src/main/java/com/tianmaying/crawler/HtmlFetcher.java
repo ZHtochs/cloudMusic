@@ -20,8 +20,7 @@ public class HtmlFetcher {
 
     public static <T> void main(String[] args) throws Exception {
         HtmlFetcher htmlFetcher = new HtmlFetcher();
-        System.out.println(htmlFetcher.fetch(
-                "http://music.163.com/#/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset=0"));
+
     }
 
 }
