@@ -13,17 +13,18 @@ public class HtmlFetcher {
         Connection.Response response = null;
         try {
             response = Jsoup.connect(url).timeout(0).execute();
-            System.out.println(response.body());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(response.body());
         return null;
     }
 
     public static <T> void main(String[] args) throws Exception {
         HtmlFetcher htmlFetcher = new HtmlFetcher();
-//        System.out.println(htmlFetcher.fetch(
-//                "http://music.163.com/#/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset=0"));
+        System.out.println(htmlFetcher.fetch("http://music.163.com/#/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset=0"));
+
     }
 
 }
