@@ -8,8 +8,16 @@ import java.io.IOException;
 public class HtmlFetcher {
 
     public String fetch(String url) {
-        // your code here
-        return null;
+        if(url==null)
+            return null;
+        Connection.Response response = null;
+        try {
+            response = Jsoup.connect(url).timeout(3000).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(response.body());
+        return response.body();
     }
 
     public static <T> void main(String[] args) throws Exception {
