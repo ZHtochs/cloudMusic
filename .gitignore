@@ -1,7 +1,10 @@
 /.idea/*
 /.mvn/*
 /target/*
+/src/main/resources
+/src/test
 mvnw.cmd
 mvnw
 demo.iml
-.gitignore
+tmy.iml
+music-163-crawler.iml
