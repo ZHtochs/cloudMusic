@@ -16,8 +16,7 @@ public class HtmlFetcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(response.body());
-        return response.body();
+        return null;
     }
 
     public static <T> void main(String[] args) throws Exception {
