@@ -11,12 +11,10 @@ public class HtmlFetcher {
         if(url==null)
             return null;
         Connection.Response response = null;
-        try {
-            response = Jsoup.connect(url).timeout(0).execute();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        response = Jsoup.connect(url).timeout(3000).execute();
+
+
         System.out.println(response.body());
         return null;
     }
