@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class HtmlFetcher {
 
-    public String fetch(String url) {
+    public String fetch(String url) throws IOException {
         if(url==null)
             return null;
         Connection.Response response = null;
