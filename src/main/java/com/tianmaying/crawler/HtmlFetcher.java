@@ -12,7 +12,8 @@ public class HtmlFetcher {
             return null;
         Connection.Response response = null;
         try {
-            response = Jsoup.connect(url).timeout(3000).execute();
+            response = Jsoup.connect(url).timeout(0).execute();
+            System.out.println(response.body());
         } catch (IOException e) {
             e.printStackTrace();
         }
