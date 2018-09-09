@@ -1,3 +1,4 @@
+.gitignore
 /.idea/*
 /.mvn/*
 /target/*
@@ -5,6 +6,5 @@
 /src/test
 mvnw.cmd
 mvnw
-demo.iml
-tmy.iml
-music-163-crawler.iml
+*.iml
+
