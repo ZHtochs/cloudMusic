@@ -16,13 +16,17 @@ public class MultiCrawlerWithList implements Crawler {
 
     public List<WebPage> crawlerList;
     public List<Song> songs = new ArrayList<>();
-    public static final Integer MAX_THREADS = 20;
+    public static final Integer MAX_THREADS =30;
 
     @Override
     public void initCrawlerList() {
-      //your code here
         crawlerList = new ArrayList<WebPage>();
-        crawlerList.add(new WebPage("http://music.163.com/playlist?id=454016843", PageType.playlist));
+      //your code here
+//         for(int i = 0; i < 43; i++) {
+//         crawlerList.add(new
+//         WebPage("http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset="
+//         + (i * 35), PageType.playlists));
+//         }
     }
 
     @Override
@@ -31,7 +35,7 @@ public class MultiCrawlerWithList implements Crawler {
         if(crawlerList.isEmpty())
             return null;
         WebPage webPage=crawlerList.remove(0);
-
+//        System.out.println(webPage.getUrl());
         return webPage;
     }
 

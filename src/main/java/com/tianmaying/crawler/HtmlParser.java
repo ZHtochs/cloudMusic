@@ -34,7 +34,7 @@ public class HtmlParser {
 
     public List<WebPage> parsePlaylists(String url) {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
-        System.out.println(document);
+//        System.out.println(document);
         Elements playlists = document.select("p.dec a");
         List<WebPage> list=new ArrayList<>();
         for(Element element:playlists){
