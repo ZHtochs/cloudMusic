@@ -12,6 +12,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
+import com.tianmaying.crawler.model.Song;
 import org.jsoup.Connection;
 import org.jsoup.Connection.Response;
 import org.jsoup.nodes.Element;
@@ -33,22 +34,34 @@ public class HtmlParser {
 
     public List<WebPage> parsePlaylists(String url) {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
-        //System.out.println(document);
-        Elements playlists = document.select("p.dec a");
-        return playlists.stream().map(e -> new WebPage(BASE_URL + e.attr("href"), PageType.playlist)).collect(Collectors.toList());
+       Elements playlists = document.select("p.dec a");
+        List<WebPage> list=new ArrayList<>();
+        WebPage webPage=new WebPage();
+        for(Element element:playlists){
+//            System.out.println(BASE_URL+ element.attr("href"));
+           webPage.setUrl(BASE_URL+ element.attr("href"));
+           webPage.setType(PageType.playlist);
+           webPage.setStatus(WebPage.Status.uncrawl);
+           list.add(webPage);
+        }
+//        return playlists.stream().map(e -> new WebPage(BASE_URL + e.attr("href"), PageType.playlist)).collect(Collectors.toList());
 
+        return list;
     }
 
     public List<WebPage> parsePlaylist(String url) {
         // your code here
+        String  as="dasd";
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
         Elements playlists = document.select("ul.f-hide a");
-        return playlists.stream().map(e -> new WebPage(BASE_URL + e.attr("href"), PageType.playlist,e.text())).collect(Collectors.toList());
+        return null;
+//        return playlists.stream().map(e -> new Song(BASE_URL + e.attr("href"), e.text(),parseSong(as))).collect(Collectors.toList());
 
     }
 
     public Long parseSong(String url) {
         try {
+            //System.out.println(url.split("=")[1]);
             return getCommentCount(url.split("=")[1]);
         } catch (Exception e) {
             return 0L;
@@ -90,9 +103,10 @@ public class HtmlParser {
     }
 
     public static <T> void main(String[] args) throws Exception {
+        String playLists="http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset=0";
         HtmlParser htmlParser = new HtmlParser();
-        htmlParser.parsePlaylists("http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset=0")
-                .forEach(playlist -> System.out.println(playlist));
+        htmlParser.parsePlaylists(playLists)
+        .forEach(playlist -> System.out.println(playlist));
         System.out.println("=====================");
         htmlParser.parsePlaylist("http://music.163.com/playlist?id=454016843").forEach(song -> System.out.println(song));
         System.out.println("=====================");
