@@ -34,7 +34,6 @@ public class HtmlParser {
 
     public List<WebPage> parsePlaylists(String url) {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
-
         Elements playlists = document.select("p.dec a");
         List<WebPage> list=new ArrayList<>();
         for(Element element:playlists){
@@ -48,14 +47,20 @@ public class HtmlParser {
         return list;
     }
 
-
-    public List<WebPage> parsePlaylist(String url) {
+    public List<Song> parsePlaylist(String url) {
         // your code here
-        String  as="dasd";
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
         Elements playlists = document.select("ul.f-hide a");
-        return null;
-//        return playlists.stream().map(e -> new Song(BASE_URL + e.attr("href"), e.text(),parseSong(as))).collect(Collectors.toList());
+        List<Song> songs=new ArrayList<>();
+        for (Element element:playlists){
+            Song song=new Song();
+//            System.out.println(BASE_URL+ element.attr("href"));
+            song.setUrl(BASE_URL+ element.attr("href"));
+            song.setTitle(element.text());
+            song.setCommentCount(parseSong(BASE_URL+ element.attr("href")));
+            songs.add(song);
+        }
+        return songs;
 
     }
 
@@ -105,13 +110,14 @@ public class HtmlParser {
     public static <T> void main(String[] args) throws Exception {
 
         String playLists="http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset=0";
+        String songs="http://music.163.com/playlist?id=454016843";
+        String singleSong="http://music.163.com/song?id=29999506";
         HtmlParser htmlParser = new HtmlParser();
-        htmlParser.parsePlaylists(playLists)
-        .forEach(playlist -> System.out.println(playlist));
+        htmlParser.parsePlaylists(playLists).forEach(playlist -> System.out.println(playlist));
         System.out.println("=====================");
-//        htmlParser.parsePlaylist("http://music.163.com/playlist?id=454016843").forEach(song -> System.out.println(song));
+        htmlParser.parsePlaylist(songs).forEach(song -> System.out.println(song));
         System.out.println("=====================");
-        System.out.println(htmlParser.parseSong("http://music.163.com/song?id=29999506"));
+        System.out.println(htmlParser.parseSong(singleSong));
 
     }
 
