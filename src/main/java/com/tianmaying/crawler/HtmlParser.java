@@ -33,7 +33,8 @@ public class HtmlParser {
 
     public List<WebPage> parsePlaylists(String url) {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
-        Elements playlists = document.select("ul.f-hide");
+        //System.out.println(document);
+        Elements playlists = document.select("p.dec a");
         return playlists.stream().map(e -> new WebPage(BASE_URL + e.attr("href"), PageType.playlist)).collect(Collectors.toList());
 
     }
