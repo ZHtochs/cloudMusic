@@ -47,19 +47,19 @@ public class HtmlParser {
         return list;
     }
 
-    public List<Song> parsePlaylist(String url) {
+    public List<WebPage> parsePlaylist(String url) {
         // your code here
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
         Elements playlists = document.select("ul.f-hide a");
-        List<Song> songs=new ArrayList<>();
-        Song song=new Song();
+        List<WebPage> songs=new ArrayList<>();
+
         for (Element element:playlists){
-            
+            WebPage webPage =new WebPage();
 //            System.out.println(BASE_URL+ element.attr("href"));
-            song.setUrl(BASE_URL+ element.attr("href"));
-            song.setTitle(element.text());
-            song.setCommentCount(parseSong(BASE_URL+ element.attr("href")));
-            songs.add(song);
+            webPage.setUrl(BASE_URL+ element.attr("href"));
+            webPage.setType(PageType.playlist);
+            webPage.setStatus(WebPage.Status.uncrawl);
+            songs.add(webPage);
         }
         return songs;
 
@@ -114,11 +114,11 @@ public class HtmlParser {
         String songs="http://music.163.com/playlist?id=454016843";
         String singleSong="http://music.163.com/song?id=29999506";
         HtmlParser htmlParser = new HtmlParser();
-        htmlParser.parsePlaylists(playLists).forEach(playlist -> System.out.println(playlist));
+//        htmlParser.parsePlaylists(playLists).forEach(playlist -> System.out.println(playlist));
         System.out.println("=====================");
         htmlParser.parsePlaylist(songs).forEach(song -> System.out.println(song));
         System.out.println("=====================");
-        System.out.println(htmlParser.parseSong(singleSong));
+//        System.out.println(htmlParser.parseSong(singleSong));
 
     }
 
