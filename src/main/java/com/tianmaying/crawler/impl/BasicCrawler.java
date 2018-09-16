@@ -47,7 +47,7 @@ public class BasicCrawler implements Crawler {
         // your code here
         for (WebPage w:webPages
              ) {
-            crawlerList.add(w);
+            this.crawlerList.add(w);
         }
         return null;
     }
@@ -56,7 +56,7 @@ public class BasicCrawler implements Crawler {
     public Song saveSong(Song song) {
         // your code here
 //        System.out.println(song);
-        songs.add(song);
+        this.songs.add(song);
         return null;
     }
 
@@ -67,11 +67,9 @@ public class BasicCrawler implements Crawler {
         while ((webPage = getUnCrawlPage()) != null) {
             String url=webPage.getUrl();
             if(webPage.getType()==PageType.playlists) {
-                System.out.println(webPage);
                 addToCrawlList(htmlParser.parsePlaylists(url));
             }
             if (webPage.getType()==PageType.playlist){
-                System.out.println(webPage);
                 addToCrawlList(htmlParser.parsePlaylist(url));
             }
             if (webPage.getType()==PageType.song){
