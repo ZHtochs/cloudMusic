@@ -57,7 +57,7 @@ public class HtmlParser {
             WebPage webPage =new WebPage();
 //            System.out.println(BASE_URL+ element.attr("href"));
             webPage.setUrl(BASE_URL+ element.attr("href"));
-            webPage.setType(PageType.playlist);
+            webPage.setType(PageType.song);
             webPage.setStatus(WebPage.Status.uncrawl);
             songs.add(webPage);
         }
