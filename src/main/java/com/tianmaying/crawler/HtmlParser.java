@@ -52,8 +52,9 @@ public class HtmlParser {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
         Elements playlists = document.select("ul.f-hide a");
         List<Song> songs=new ArrayList<>();
+        Song song=new Song();
         for (Element element:playlists){
-            Song song=new Song();
+            
 //            System.out.println(BASE_URL+ element.attr("href"));
             song.setUrl(BASE_URL+ element.attr("href"));
             song.setTitle(element.text());
