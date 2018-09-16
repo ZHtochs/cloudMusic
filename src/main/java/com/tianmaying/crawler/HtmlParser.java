@@ -33,7 +33,7 @@ public class HtmlParser {
 
     public List<WebPage> parsePlaylists(String url) {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
-        Elements playlists = document.select("ul.f-hide a");
+        Elements playlists = document.select("ul.f-hide");
         return playlists.stream().map(e -> new WebPage(BASE_URL + e.attr("href"), PageType.playlist)).collect(Collectors.toList());
 
     }
@@ -42,8 +42,8 @@ public class HtmlParser {
         // your code here
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
         Elements playlists = document.select("ul.f-hide a");
-        return playlists.stream().map(e -> new WebPage(BASE_URL + e.attr("href"), PageType.playlist)).collect(Collectors.toList());
-       
+        return playlists.stream().map(e -> new WebPage(BASE_URL + e.attr("href"), PageType.playlist,e.text())).collect(Collectors.toList());
+
     }
 
     public Long parseSong(String url) {
