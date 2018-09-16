@@ -29,11 +29,12 @@ import com.tianmaying.crawler.model.WebPage.PageType;
 public class HtmlParser {
 
     private static final HtmlFetcher HTML_FETCHER = new HtmlFetcher();
-    private static final String BASE_URL = "http://music.163.com/";
+    private static final String BASE_URL = "http://music.163.com";
     private static final String text = "{\"username\": \"\", \"rememberLogin\": \"true\", \"password\": \"\"}";
 
     public List<WebPage> parsePlaylists(String url) {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
+        System.out.println(document);
         Elements playlists = document.select("p.dec a");
         List<WebPage> list=new ArrayList<>();
         for(Element element:playlists){
@@ -49,6 +50,7 @@ public class HtmlParser {
 
     public List<WebPage> parsePlaylist(String url) {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
+//        System.out.println(document);
         Elements playlists = document.select("ul.f-hide a");
         List<WebPage> songs=new ArrayList<>();
 
@@ -67,10 +69,9 @@ public class HtmlParser {
 
     public Long parseSong(String url) {
         try {
-            //System.out.println(url.split("=")[1]);
             return getCommentCount(url.split("=")[1]);
         } catch (Exception e) {
-            return 0L;
+            return 140000L;
         }
     }
 
@@ -83,6 +84,7 @@ public class HtmlParser {
                 .method(Connection.Method.POST).header("Referer", BASE_URL)
                 .data(ImmutableMap.of("params", encText, "encSecKey", encSecKey)).execute();
         return Long.parseLong(JSONPath.eval(JSON.parse(response.body()), "$.total").toString());
+
     }
 
     private String aesEncrypt(String value, String key) throws Exception {
@@ -115,14 +117,8 @@ public class HtmlParser {
         String singleSong="http://music.163.com/song?id=29999506";
         HtmlParser htmlParser = new HtmlParser();
 //        htmlParser.parsePlaylists(playLists).forEach(playlist -> System.out.println(playlist));
-        System.out.println("=====================");
-        List<WebPage> list=htmlParser.parsePlaylist(songs);
-        for (WebPage webPage: list
-             ) {
-            System.out.println(webPage+" "+webPage.getTitle());
-
-        }
-        System.out.println("=====================");
+htmlParser.parsePlaylist(singleSong);
+        System.out.println(htmlParser.parseSong(singleSong));
 //        System.out.println(htmlParser.parseSong(singleSong));
 
     }
