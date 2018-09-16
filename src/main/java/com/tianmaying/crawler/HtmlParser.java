@@ -48,7 +48,6 @@ public class HtmlParser {
     }
 
     public List<WebPage> parsePlaylist(String url) {
-        // your code here
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
         Elements playlists = document.select("ul.f-hide a");
         List<WebPage> songs=new ArrayList<>();
@@ -58,6 +57,7 @@ public class HtmlParser {
 //            System.out.println(BASE_URL+ element.attr("href"));
             webPage.setUrl(BASE_URL+ element.attr("href"));
             webPage.setType(PageType.song);
+            webPage.setTitle(element.text());
             webPage.setStatus(WebPage.Status.uncrawl);
             songs.add(webPage);
         }
@@ -116,7 +116,12 @@ public class HtmlParser {
         HtmlParser htmlParser = new HtmlParser();
 //        htmlParser.parsePlaylists(playLists).forEach(playlist -> System.out.println(playlist));
         System.out.println("=====================");
-        htmlParser.parsePlaylist(songs).forEach(song -> System.out.println(song));
+        List<WebPage> list=htmlParser.parsePlaylist(songs);
+        for (WebPage webPage: list
+             ) {
+            System.out.println(webPage+" "+webPage.getTitle());
+
+        }
         System.out.println("=====================");
 //        System.out.println(htmlParser.parseSong(singleSong));
 
