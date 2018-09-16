@@ -69,7 +69,7 @@ public class WebPage {
 
     @Override
     public String toString() {
-        return "WebPage [url=" + url + ", status=" + status +",name="+title+"]"+"\n\r";
+        return "WebPage [url=" + url + ", status=" + status + "]";
     }
 
 }

@@ -26,11 +26,7 @@ public class HtmlFetcher {
     }
 
     public static <T> void main(String[] args) throws Exception {
-        HtmlFetcher htmlFetcher = new HtmlFetcher();
-        //System.out.println(htmlFetcher.fetch(url));
-        HtmlParser htmlParser = new HtmlParser();
-        List<WebPage> zxc=htmlParser.parsePlaylist( url);
-        System.out.println(zxc.toString());
+
 
     }
 
