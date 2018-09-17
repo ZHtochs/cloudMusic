@@ -1,6 +1,11 @@
 package com.tianmaying.crawler.model;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 
+@Entity
 public class WebPage {
 
     public enum PageType {
@@ -11,9 +16,12 @@ public class WebPage {
         crawled, uncrawl;
     }
 
+    @Id
     private String url;
     private String title;
+    @Enumerated(EnumType.STRING)
     private PageType type;
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     public WebPage() {

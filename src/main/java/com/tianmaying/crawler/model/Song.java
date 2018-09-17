@@ -1,8 +1,11 @@
 package com.tianmaying.crawler.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Song {
-
+    @Id
     private String url;
     private String title;
     private Long commentCount;
