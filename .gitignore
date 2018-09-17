@@ -1,10 +1,16 @@
 .gitignore
+
 /.idea/*
+
 /.mvn/*
+
 /target/*
-/src/main/resources
-/src/test
-mvnw.cmd
+
+/src/main/test
 mvnw
+*.cmd
+
+mvnw
+
 *.iml
 

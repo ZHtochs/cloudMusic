@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+ <head lang="en">
+  <meta charset="UTF-8"></meta>
+  <title>歌曲列表</title>
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/css/footer.css"></link>
+</head>
+ <body>
+  <header class="head">
+    网易云音乐歌曲列表(共<span th:text="${songs.totalElements}"></span>首歌曲)
+  </header>
+  <div class="container">
+      <table class="table" style="width: 400px;">
+        <thead>
+            <tr>
+                <th>歌曲</th>
+                <th>评论数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="song: ${songs.content}">
+                <td><a th:text="${song.title}" th:href="@{${song.url}}" target="_blank"></a></td>
+                <td th:text="${song.commentCount}"></td>
+            </tr>
+        </tbody>
+      </table>
+
+
+      <footer>
+         &copy; 2018<a href="https://github.com/ZHtochs/cloudMusic.git">GitHub</a>
+      </footer>
+ </div>
+
+
+ </body>
+</html>
