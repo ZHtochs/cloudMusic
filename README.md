@@ -1,6 +1,6 @@
 # cloudMusic
 
-一个网易云音乐歌单的简单爬虫，利用多线程实现了爬虫操作，并用简单的springboot做了个简单的界面。
+一个网易云音乐歌单的爬虫，利用多线程实现了爬虫操作，并用的springboot做了个简单的界面。
 
 歌曲评论数的爬取可以使用这个接口http://music.163.com/api/v1/resource/comments/R_SO_4_+（歌曲ID）
 
