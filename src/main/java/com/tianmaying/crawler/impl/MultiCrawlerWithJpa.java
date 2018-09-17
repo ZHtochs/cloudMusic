@@ -50,6 +50,8 @@ public class MultiCrawlerWithJpa implements Crawler {
             return null;
         }
         // 将页面标记为已爬，并返回页面
+        webPage.setStatus(Status.crawled);
+        webPageRepository.saveAndFlush(webPage);
         return webPage;
     }
 
@@ -58,7 +60,6 @@ public class MultiCrawlerWithJpa implements Crawler {
         // your code here
         for (WebPage w:webPages
              ) {webPageRepository.saveAndFlush(w);
-
         }
         return null;
     }
