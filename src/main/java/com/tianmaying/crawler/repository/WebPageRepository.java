@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * @program: tmy
  * @description:
  * @author: zhuhe
  * @create: 2018-09-17 14:22

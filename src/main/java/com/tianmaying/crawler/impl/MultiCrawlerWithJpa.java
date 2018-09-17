@@ -39,7 +39,7 @@ public class MultiCrawlerWithJpa implements Crawler {
 //        for(int i = 0; i < 43; i++) {
 //            webPageRepository.saveAndFlush(new WebPage("http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset="  + (i * 35), PageType.playlists));
 //        }
-        WebPage webPage=new WebPage("http://music.163.com/playlist?id=2180709071", PageType.playlist);
+        WebPage webPage=new WebPage("http://music.163.com/playlist?id=27311319", PageType.playlist);
         webPageRepository.save(webPage);
     }
 
@@ -57,7 +57,7 @@ public class MultiCrawlerWithJpa implements Crawler {
 
     @Override
     public List<WebPage> addToCrawlList(List<WebPage> webPages) {
-        // your code here
+
         for (WebPage w:webPages
              ) {webPageRepository.saveAndFlush(w);
         }
@@ -66,7 +66,7 @@ public class MultiCrawlerWithJpa implements Crawler {
 
     @Override
     public Song saveSong(Song song) {
-        // your code here
+
         songRepository.save(song);
         return null;
     }
@@ -88,7 +88,6 @@ public class MultiCrawlerWithJpa implements Crawler {
 
     @Override
     public List<Song> getSongs() {
-        // your code here
 
         return songRepository.findAll();
     }

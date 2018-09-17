@@ -21,19 +21,19 @@ public class MultiCrawlerWithList implements Crawler {
     @Override
     public void initCrawlerList() {
         crawlerList = new ArrayList<WebPage>();
-        //your code here
+
 //         for(int i = 0; i < 43; i++) {
 //         crawlerList.add(new
 //         WebPage("http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset="
 //         + (i * 35), PageType.playlists));
 //         }
         crawlerList.add(new
-                WebPage("http://music.163.com/playlist?id=2180709071", PageType.playlist));
+                WebPage("http://music.163.com/playlist?id=27311319", PageType.playlist));
     }
 
     @Override
     public synchronized WebPage getUnCrawlPage() {
-        //your code here
+
         if (crawlerList.isEmpty())
             return null;
         WebPage webPage = crawlerList.remove(0);
@@ -53,7 +53,7 @@ public class MultiCrawlerWithList implements Crawler {
 
     @Override
     public Song saveSong(Song song) {
-        //your code here
+
         this.songs.add(song);
         return null;
     }
@@ -75,18 +75,18 @@ public class MultiCrawlerWithList implements Crawler {
 
     @Override
     public List<Song> getSongs() {
-        //your code here
+
         return songs;
     }
 
-    public static <T> void main(String[] args) throws Exception {
-        Date startTime = new Date();
-        Crawler crawler = new MultiCrawlerWithList();
-        crawler.run();
-        for (Song song : crawler.getSongs()) {
-            System.out.println(song);
-        }
-        System.out.println("花费时间：" + (new Date().getTime() - startTime.getTime()));
-    }
+//    public static <T> void main(String[] args) throws Exception {
+//        Date startTime = new Date();
+//        Crawler crawler = new MultiCrawlerWithList();
+//        crawler.run();
+//        for (Song song : crawler.getSongs()) {
+//            System.out.println(song);
+//        }
+//        System.out.println("花费时间：" + (new Date().getTime() - startTime.getTime()));
+//    }
 
 }

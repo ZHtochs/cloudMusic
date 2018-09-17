@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HtmlFetcher {
     private static String url = "https://music.163.com/playlist?id=486766852";
-
+    //伪造请求头
     public String fetch(String url) {
         try {
             Connection.Response response = Jsoup.connect(url).timeout(3000)
@@ -25,9 +25,5 @@ public class HtmlFetcher {
         }
     }
 
-    public static <T> void main(String[] args) throws Exception {
-
-
-    }
 
 }

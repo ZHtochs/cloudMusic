@@ -89,14 +89,14 @@ public class BasicCrawler implements Crawler {
         return songs;
     }
 
-    public static <T> void main(String[] args) throws Exception {
-        Date startTime = new Date();
-        Crawler crawler = new BasicCrawler();
-        crawler.run();
-        for (Song song : crawler.getSongs()) {
-            System.out.println(song);
-        }
-        System.out.println("花费时间：" + (new Date().getTime() - startTime.getTime()));
-    }
+//    public static <T> void main(String[] args) throws Exception {
+//        Date startTime = new Date();
+//        Crawler crawler = new BasicCrawler();
+//        crawler.run();
+//        for (Song song : crawler.getSongs()) {
+//            System.out.println(song);
+//        }
+//        System.out.println("花费时间：" + (new Date().getTime() - startTime.getTime()));
+//    }
 
 }

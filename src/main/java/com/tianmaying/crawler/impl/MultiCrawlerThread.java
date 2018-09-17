@@ -35,12 +35,11 @@ public class MultiCrawlerThread implements Runnable {
                         e.printStackTrace();
                     }
                     getUnCrawlPageTimes++;
-                    System.out.println(getUnCrawlPageTimes);
                     continue;
                 }
             }
             getUnCrawlPageTimes = 0;
-            //your code here
+            //判断链接类型
             if (PageType.playlists.equals(webPage.getType())) {
                 multiCrawler.addToCrawlList(htmlParser.parsePlaylists(webPage.getUrl()));
             } else if (PageType.playlist.equals(webPage.getType())) {

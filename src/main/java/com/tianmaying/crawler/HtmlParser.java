@@ -32,6 +32,7 @@ public class HtmlParser {
     private static final String BASE_URL = "http://music.163.com/";
     private static final String text = "{\"username\": \"\", \"rememberLogin\": \"true\", \"password\": \"\"}";
 
+    /*如果是歌单的歌单就拆分并将所有的歌单都入队*/
     public List<WebPage> parsePlaylists(String url) {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
 //        System.out.println(document);
@@ -48,6 +49,7 @@ public class HtmlParser {
         return list;
     }
 
+    /*如果链接是歌单就将歌单里的歌都放入队列*/
     public List<WebPage> parsePlaylist(String url) {
         Document document = Jsoup.parse(HTML_FETCHER.fetch(url));
 //        System.out.println(document);
@@ -67,30 +69,29 @@ public class HtmlParser {
 
     }
 
-
+    /*获得歌曲评论数，使用知乎上看到的接口*/
     public Long parseSong(String url) {
         String urlAPI = "http://music.163.com/api/v1/resource/comments/R_SO_4_" + url.split("=")[1];
         Document document = Jsoup.parse(HTML_FETCHER.fetch(urlAPI));
-        String content =document.text();
+        String content = document.text();
 
-        String comment=content.substring(content.length()-30,content.length()-1);
+        String comment = content.substring(content.length() - 30, content.length() - 1);
 //        System.out.println(comment);
-        String s1=comment.replaceAll("[^0-9]", "");
+        String s1 = comment.replaceAll("[^0-9]", "");
         return Long.parseLong(s1);
     }
 
-
-    public static <T> void main(String[] args) throws Exception {
-
-        String playLists = "http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset=0";
-        String songs = "http://music.163.com/playlist?id=454016843";
-        String singleSong = "http://music.163.com/song?id=29999506";
-        HtmlParser htmlParser = new HtmlParser();
-//        htmlParser.parsePlaylists(playLists).forEach(playlist -> System.out.println(playlist));
-//        htmlParser.parsePlaylist(singleSong);
+//    public static <T> void main(String[] args) throws Exception {
+//
+//        String playLists = "http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset=0";
+//        String songs = "http://music.163.com/playlist?id=454016843";
+//        String singleSong = "http://music.163.com/song?id=29999506";
+//        HtmlParser htmlParser = new HtmlParser();
+////        htmlParser.parsePlaylists(playLists).forEach(playlist -> System.out.println(playlist));
+////        htmlParser.parsePlaylist(singleSong);
+////        System.out.println(htmlParser.parseSong(singleSong));
 //        System.out.println(htmlParser.parseSong(singleSong));
-        System.out.println(htmlParser.parseSong(singleSong));
-
-    }
+//
+//    }
 
 }
