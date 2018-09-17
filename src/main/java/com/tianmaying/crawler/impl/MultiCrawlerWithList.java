@@ -27,6 +27,8 @@ public class MultiCrawlerWithList implements Crawler {
 //         WebPage("http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset="
 //         + (i * 35), PageType.playlists));
 //         }
+        crawlerList.add(new
+         WebPage("http://music.163.com/playlist?id=454016843", PageType.playlist));
     }
 
     @Override
