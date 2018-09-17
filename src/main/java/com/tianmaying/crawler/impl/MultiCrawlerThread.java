@@ -24,7 +24,6 @@ public class MultiCrawlerThread implements Runnable {
         int getUnCrawlPageTimes = 0;
         while (true) {
             webPage = multiCrawler.getUnCrawlPage();
-//            System.out.println(this.id + "线程使用:" + webPage.getUrl());
             if (webPage == null) {
                 if (getUnCrawlPageTimes > 10) {
                     break;
@@ -36,6 +35,7 @@ public class MultiCrawlerThread implements Runnable {
                         e.printStackTrace();
                     }
                     getUnCrawlPageTimes++;
+                    System.out.println(getUnCrawlPageTimes);
                     continue;
                 }
             }

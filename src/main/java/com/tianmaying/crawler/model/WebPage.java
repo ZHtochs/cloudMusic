@@ -18,7 +18,8 @@ public class WebPage {
 
     @Id
     private String url;
-    private String title;
+
+    private String title=null;
     @Enumerated(EnumType.STRING)
     private PageType type;
     @Enumerated(EnumType.STRING)

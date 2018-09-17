@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Component;
 
 import com.tianmaying.crawler.Crawler;
 import com.tianmaying.crawler.model.Song;
@@ -22,12 +22,11 @@ import com.tianmaying.crawler.model.WebPage.PageType;
 import com.tianmaying.crawler.model.WebPage.Status;
 import com.tianmaying.crawler.repository.SongRepository;
 import com.tianmaying.crawler.repository.WebPageRepository;
-import org.springframework.stereotype.Component;
 
 @Component
 public class MultiCrawlerWithJpa implements Crawler {
 
-    public static final Integer MAX_THREADS = 20;
+    public static final Integer MAX_THREADS = 1;
 
     @Autowired
     private WebPageRepository webPageRepository;
@@ -40,8 +39,8 @@ public class MultiCrawlerWithJpa implements Crawler {
 //        for(int i = 0; i < 43; i++) {
 //            webPageRepository.saveAndFlush(new WebPage("http://music.163.com/discover/playlist/?order=hot&cat=%E5%85%A8%E9%83%A8&limit=35&offset="  + (i * 35), PageType.playlists));
 //        }
-        WebPage webPage=new WebPage("http://music.163.com/playlist?id=454016843", PageType.playlist);
-        webPageRepository.saveAndFlush(webPage);
+        WebPage webPage=new WebPage("http://music.163.com/playlist?id=2180709071", PageType.playlist);
+        webPageRepository.save(webPage);
     }
 
     @Override
@@ -50,7 +49,6 @@ public class MultiCrawlerWithJpa implements Crawler {
         if(webPage == null) {
             return null;
         }
-        // your code here
         // 将页面标记为已爬，并返回页面
         return webPage;
     }
@@ -58,7 +56,10 @@ public class MultiCrawlerWithJpa implements Crawler {
     @Override
     public List<WebPage> addToCrawlList(List<WebPage> webPages) {
         // your code here
-        webPageRepository.saveAll(webPages);
+        for (WebPage w:webPages
+             ) {webPageRepository.saveAndFlush(w);
+
+        }
         return null;
     }
 

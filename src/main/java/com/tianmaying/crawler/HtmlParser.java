@@ -67,8 +67,8 @@ public class HtmlParser {
 
     }
 
+
     public Long parseSong(String url) {
-        //网易云获取评论数接口
         String urlAPI = "http://music.163.com/api/v1/resource/comments/R_SO_4_" + url.split("=")[1];
         Document document = Jsoup.parse(HTML_FETCHER.fetch(urlAPI));
         String content =document.text();
